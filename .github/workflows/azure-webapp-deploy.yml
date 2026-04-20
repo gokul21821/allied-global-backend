@@ -1,0 +1,36 @@
+name: Deploy to Azure Web App
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+env:
+  AZURE_WEBAPP_NAME: allied-global-backend
+  NODE_VERSION: '20.x'
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: npm install
+        run: npm install --production
+
+      - name: Zip artifact
+        run: zip -r release.zip . -x ".git/*" ".github/*"
+
+      - name: Deploy to Azure Web App via Kudu ZIP deploy
+        run: |
+          curl -sS -f -X POST \
+            -u "${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE_USERNAME }}:${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE_PASSWORD }}" \
+            -H "Content-Type: application/zip" \
+            --data-binary @release.zip \
+            "https://${AZURE_WEBAPP_NAME}.scm.azurewebsites.net/api/zipdeploy"
