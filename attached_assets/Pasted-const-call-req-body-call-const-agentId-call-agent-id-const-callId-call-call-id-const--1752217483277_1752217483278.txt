@@ -1,0 +1,97 @@
+const call = req.body.call;
+  const agentId = call.agent_id;
+  const callId = call.call_id;
+  const callTimestamp = call.start_timestamp; // Ensure this is in a valid timestamp format
+  const callCost = call.call_cost?.combined_cost || 0;
+
+  if (!agentId || !callId || !callTimestamp) {
+    console.error(
+      "Missing agent_id, call_id, or start_timestamp in the request body.",
+    );
+    return res
+      .status(400)
+      .send("Bad Request: Missing agent_id, call_id, or start_timestamp.");
+  }
+
+  try {
+    // Step 2: Use a Collection Group Query to find the agent document
+    console.log(agentId);
+    const agentQuerySnapshot = await db
+      .collectionGroup("agents")
+      .where("agent_id", "==", agentId)
+      .orderBy("created_at", "desc")
+      .limit(1) // Assuming agent_id is unique
+      .get();
+
+    if (agentQuerySnapshot.empty) {
+      console.warn(`Agent ID '${agentId}' not found in Firestore.`);
+      return res.sendStatus(200); // Optionally, you might want to respond differently
+    }
+
+    // Assuming agent_id is unique and only one document is found
+    const agentDoc = agentQuerySnapshot.docs[0];
+    const agentRef = agentDoc.ref;
+
+    // Navigate up the document hierarchy to get workspace and user
+    const workspaceRef = agentRef.parent.parent;
+    if (!workspaceRef) {
+      console.error("Workspace reference not found for the agent.");
+      return res
+        .status(500)
+        .send("Internal Server Error: Workspace not found.");
+    }
+
+    const userRef = workspaceRef.parent.parent;
+    if (!userRef) {
+      console.error("User reference not found for the workspace.");
+      return res.status(500).send("Internal Server Error: User not found.");
+    }
+
+    const userId = userRef.id;
+    const workspaceId = workspaceRef.id;
+
+    console.log(
+      `Agent ID '${agentId}' belongs to User ID '${userId}' and Workspace ID '${workspaceId}'.`,
+    );
+
+    // Step 3: Create a new document in 'call_history' sub-collection
+    console.log(userId);
+    console.log(workspaceId);
+    console.log(callId);
+    const callHistoryRef = db
+      .collection("users")
+      .doc(userId)
+      .collection("workspaces")
+      .doc(workspaceId)
+      .collection("call_history")
+      .doc(callId);
+
+    // Set the entire call data. Adjust as needed (e.g., exclude sensitive info)
+
+    console.log(call);
+    await callHistoryRef.set(call);
+
+    console.log(`Call ID '${callId}' has been saved to 'call_history'.`);
+
+    const invoiceRef = db
+      .collection("users")
+      .doc(userId)
+      .collection("workspaces")
+      .doc(workspaceId)
+      .collection("invoices")
+      .doc(monthKey);
+
+    await invoiceRef.set(
+      {
+        call_ids: admin.firestore.FieldValue.arrayUnion(callId),
+        total_calls: admin.firestore.FieldValue.increment(1),
+        total_cost: admin.firestore.FieldValue.increment(callCost),
+        invoice_status: "pending", // Default to pending until processed
+        generated_at: admin.firestore.Timestamp.fromDate(new Date()),
+      },
+      { merge: true },
+    );
+
+    console.log(
+      `Call ID '${callId}' has been added to the invoice for '${monthKey}'. Total cost updated.`,
+    );

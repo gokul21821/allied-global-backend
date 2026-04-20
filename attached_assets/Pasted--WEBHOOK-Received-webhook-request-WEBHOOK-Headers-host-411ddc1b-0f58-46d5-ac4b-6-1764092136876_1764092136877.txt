@@ -1,0 +1,77 @@
+📥 [WEBHOOK] Received webhook request
+📥 [WEBHOOK] Headers: {
+  "host": "411ddc1b-0f58-46d5-ac4b-6508ee01ef61-00-g3pxjhlfel3k.pike.replit.dev",
+  "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36",
+  "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+  "accept-encoding": "gzip, deflate, br, zstd",
+  "accept-language": "en-GB,en-US;q=0.9,en;q=0.8",
+  "if-none-match": "W/\"41-nSb/JF+5ZOnumDbyxwikTJJBZtU\"",
+  "sec-ch-ua": "\"Chromium\";v=\"142\", \"Google Chrome\";v=\"142\", \"Not_A Brand\";v=\"99\"",
+  "sec-ch-ua-mobile": "?0",
+  "sec-ch-ua-platform": "\"Windows\"",
+  "sec-fetch-dest": "document",
+  "sec-fetch-mode": "navigate",
+  "sec-fetch-site": "none",
+  "sec-fetch-user": "?1",
+  "upgrade-insecure-requests": "1",
+  "x-forwarded-for": "106.219.170.206, 10.84.6.190",
+  "x-forwarded-proto": "https",
+  "x-replit-user-bio": "",
+  "x-replit-user-id": "",
+  "x-replit-user-name": "",
+  "x-replit-user-profile-image": "",
+  "x-replit-user-roles": "",
+  "x-replit-user-teams": "",
+  "x-replit-user-url": ""
+}
+📥 [WEBHOOK] Body: {}
+⚠️ [WEBHOOK] Missing elevenlabs-signature header - skipping signature validation
+⚠️ [WEBHOOK] No data in request body - this might be a test request
+[nodemon] restarting due to changes...
+[nodemon] starting `node index.js`
+Server running on port 3000
+[nodemon] restarting due to changes...
+[nodemon] starting `node index.js`
+Server running on port 3000
+[nodemon] restarting due to changes...
+[nodemon] starting `node index.js`
+Server running on port 3000
+[nodemon] restarting due to changes...
+[nodemon] starting `node index.js`
+Server running on port 3000
+[nodemon] restarting due to changes...
+[nodemon] starting `node index.js`
+Server running on port 3000
+[nodemon] restarting due to changes...
+[nodemon] starting `node index.js`
+Server running on port 3000
+📥 [WEBHOOK] Received webhook request
+📥 [WEBHOOK] Headers: {
+  "host": "411ddc1b-0f58-46d5-ac4b-6508ee01ef61-00-g3pxjhlfel3k.pike.replit.dev",
+  "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36",
+  "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+  "accept-encoding": "gzip, deflate, br, zstd",
+  "accept-language": "en-GB,en-US;q=0.9,en;q=0.8",
+  "cache-control": "max-age=0",
+  "if-none-match": "W/\"41-nSb/JF+5ZOnumDbyxwikTJJBZtU\"",
+  "sec-ch-ua": "\"Chromium\";v=\"142\", \"Google Chrome\";v=\"142\", \"Not_A Brand\";v=\"99\"",
+  "sec-ch-ua-mobile": "?0",
+  "sec-ch-ua-platform": "\"Windows\"",
+  "sec-fetch-dest": "document",
+  "sec-fetch-mode": "navigate",
+  "sec-fetch-site": "none",
+  "sec-fetch-user": "?1",
+  "upgrade-insecure-requests": "1",
+  "x-forwarded-for": "106.219.170.206, 10.84.0.59",
+  "x-forwarded-proto": "https",
+  "x-replit-user-bio": "",
+  "x-replit-user-id": "",
+  "x-replit-user-name": "",
+  "x-replit-user-profile-image": "",
+  "x-replit-user-roles": "",
+  "x-replit-user-teams": "",
+  "x-replit-user-url": ""
+}
+📥 [WEBHOOK] Body: {}
+⚠️ [WEBHOOK] Missing elevenlabs-signature header - skipping signature validation
+⚠️ [WEBHOOK] No data in request body - this might be a test request

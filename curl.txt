@@ -1,0 +1,155 @@
+webhook secret
+
+wsec_c58c6d976136591c36674158d9ab2da4dbe17b0000d28d639ca2c85486dbae63
+
+
+SAMPLE USER ID: FFLQnCCCxLVGFcdyUSUgq4NKG572
+
+{
+  tts: { voice_id: 'XB0fDUnXU5powFXDhCwa' },
+  turn: {},
+  agent: {
+    prompt: {
+      prompt: 'Hi i am a god ',
+      llm: 'gpt-4o',
+      temperature: 0.6,
+      knowledge_base_document_ids: [],
+      tool_ids: []
+    }
+  }
+}
+
+1. CREATE AGENT
+curl -X POST https://voice-platform-backend.replit.app/agents/create \
+-H "Content-Type: application/json" \
+-d '{
+  "user_id": "FFLQnCCCxLVGFcdyUSUgq4NKG572",
+  "name": "My New Agent",
+  "conversation_config": {
+    "agent": {
+      "prompt": {
+        "prompt": "You are a helpful assistant",
+        "temperature": 0.7,
+        "llm": "gpt-4o",
+        knowledge_base_document_ids: [],
+        tool_ids: []
+      }
+    },    
+    "turn": {},
+    "tts": {
+      "voice_id": "EkK5I93UQWFDigLMpZcX"
+    }
+  }
+}'
+
+
+
+
+
+
+
+get agent
+curl -X GET https://voice-platform-backend.replit.app/agents/{user_id}/{agent_id}
+
+
+
+update agent
+curl -X PATCH https://2972388d-09c2-46b8-b885-08bfc45c065a-00-101pvnrdstzi3.pike.replit.dev/agents/user123/agent456 \
+-H "Content-Type: application/json" \
+-d '{
+  "name": "Updated Agent Name",
+  "conversation_config": {
+    "first_message": "Updated greeting message",
+    "language": "en"
+  }
+}'
+
+
+
+delete agent
+curl -X DELETE http://localhost:3000/agents/user123/agent456
+
+
+
+
+
+List agents 
+curl -X GET https://2972388d-09c2-46b8-b885-08bfc45c065a-00-101pvnrdstzi3.pike.replit.dev/agents/GiKKrmCPZrZRlSyUYob7tgH1dFJ3
+
+
+
+
+Create Phone Number:
+
+curl -X POST https://2972388d-09c2-46b8-b885-08bfc45c065a-00-101pvnrdstzi3.pike.replit.dev/phone-numbers/create \
+  -H "Content-Type: application/json" \
+  -d '{
+    "user_id": "user123",
+    "phone_number": "+1234567890",
+    "provider": "twilio",
+    "label": "My Phone Number",
+    "sid": "your_twilio_sid",
+    "token": "your_twilio_token"
+  }'
+
+
+
+
+  Get Phone Number:
+
+  curl -X GET https://2972388d-09c2-46b8-b885-08bfc45c065a-00-101pvnrdstzi3.pike.replit.dev/phone-numbers/{user_id}/{phone_number_id}
+
+
+
+
+  Update Phone Number:
+
+  curl -X PATCH https://2972388d-09c2-46b8-b885-08bfc45c065a-00-101pvnrdstzi3.pike.replit.dev/phone-numbers/phone-numbers/{user_id}/{phone_number_id} \
+    -H "Content-Type: application/json" \
+    -d '{
+      "label": "Updated Label",
+      "phone_number": "+1987654321",
+      "sid": "new_twilio_sid",
+      "token": "new_twilio_token"
+    }'
+
+
+
+    Delete Phone Number:
+
+    curl -X DELETE https://2972388d-09c2-46b8-b885-08bfc45c065a-00-101pvnrdstzi3.pike.replit.dev/phone-numbers/{user_id}/{phone_number_id}
+
+
+curl https://api.elevenlabs.io/v1/convai/phone-numbers/ \
+ -H "xi-api-key: sk_32be00d8b9ad87a202052fc966498c90cb4f8042e534e2da"
+
+
+    List Phone Numbers:
+
+    curl -X GET https://fd0bdafe-45aa-421f-b51e-6c28d77caab4-00-c24aep5n40gf.sisko.replit.dev/phone-numbers/{user_id}
+
+
+curl -X GET https://fd0bdafe-45aa-421f-b51e-6c28d77caab4-00-c24aep5n40gf.sisko.replit.dev/phone-numbers/3E1vwLMsgqZjiraV87z9hTiHnix1
+
+
+curl https://api.elevenlabs.io/v1/convai/settings \
+ -H "xi-api-key: sk_32be00d8b9ad87a202052fc966498c90cb4f8042e534e2da"
+
+List Voices:
+
+curl -X GET https://2972388d-09c2-46b8-b885-08bfc45c065a-00-101pvnrdstzi3.pike.replit.dev/voices/list-voices
+
+
+
+Get Voice:
+
+curl -X GET https://2972388d-09c2-46b8-b885-08bfc45c065a-00-101pvnrdstzi3.pike.replit.dev/voices/get-voice/XB0fDUnXU5powFXDhCwa
+
+
+curl -X POST https://2972388d-09c2-46b8-b885-08bfc45c065a-00-101pvnrdstzi3.pike.replit.dev/get-conversation/H5mXZiQlgpTMhiRcbXOK \ 
+     -H "Content-Type: application/json" \
+     -d '{
+       "user_id": "GiKKrmCPZrZRlSyUYob7tgH1dFJ3"
+     }'
+
+{"conversation":{"agent_id":"NLzCEUlA8QoxlT29lZD4","conversation_id":"H5mXZiQlgpTMhiRcbXOK","status":"done","transcript":[{"role":"user","message":"Hello.","tool_calls":null,"tool_results":null,"feedback":null,"time_in_call_secs":2,"conversation_turn_metrics":null},{"role":"agent","message":"Hello! How can I assist you today?","tool_calls":null,"tool_results":null,"feedback":null,"time_in_call_secs":4,"conversation_turn_metrics":{"convai_llm_service_ttfb":{"elapsed_time":0.7059190369909629},"convai_llm_service_ttf_sentence":{"elapsed_time":0.6871057889657095}}},{"role":"user","message":"Stop talking.","tool_calls":null,"tool_results":null,"feedback":null,"time_in_call_secs":7,"conversation_turn_metrics":null},{"role":"agent","message":"Alright, feel free to...","tool_calls":null,"tool_results":null,"feedback":null,"time_in_call_secs":9,"conversation_turn_metrics":null},{"role":"user","message":"Stop!","tool_calls":null,"tool_results":null,"feedback":null,"time_in_call_secs":11,"conversation_turn_metrics":null},{"role":"agent","message":"Okay, I'll be here if you need anything.","tool_calls":null,"tool_results":null,"feedback":null,"time_in_call_secs":13,"conversation_turn_metrics":null},{"role":"user","message":"Stop. Stop.","tool_calls":null,"tool_results":null,"feedback":null,"time_in_call_secs":11,"conversation_turn_metrics":null}],"metadata":{"start_time_unix_secs":1739590726,"call_duration_secs":14,"cost":164,"deletion_settings":{"deletion_time_unix_secs":null,"deleted_logs_at_time_unix_secs":null,"deleted_audio_at_time_unix_secs":null,"deleted_transcript_at_time_unix_secs":null,"delete_transcript_and_pii":false,"delete_audio":false},"feedback":{"overall_score":null,"likes":0,"dislikes":0},"authorization_method":"public","charging":{"dev_discount":false},"termination_reason":""},"analysis":{"evaluation_criteria_results":{},"data_collection_results":{},"call_successful":"success","transcript_summary":"This brief conversation demonstrates a user's desire for the agent to stop communicating. The interaction begins with a standard greeting from both parties. However, the user quickly requests the agent to stop talking. Despite the agent's attempts to acknowledge and comply with the user's wishes, the user repeatedly insists on the agent stopping. The conversation ends with the user emphatically repeating the command \"Stop\" twice. Overall, the exchange is characterized by the user's clear and persistent desire to end the interaction, while the agent attempts to respect the user's wishes while remaining available if needed."},"conversation_initiation_client_data":{"conversation_config_override":{"agent":null,"tts":null},"custom_llm_extra_body":{},"dynamic_variables":{}}},"audio":
