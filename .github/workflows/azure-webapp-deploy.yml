@@ -28,9 +28,12 @@ jobs:
         run: zip -r release.zip . -x ".git/*" ".github/*"
 
       - name: Deploy to Azure Web App via Kudu ZIP deploy
+        env:
+          SCM_USERNAME: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE_USERNAME }}
+          SCM_PASSWORD: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE_PASSWORD }}
         run: |
           curl -sS -f -X POST \
-            -u "${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE_USERNAME }}:${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE_PASSWORD }}" \
+            -u "${SCM_USERNAME}:${SCM_PASSWORD}" \
             -H "Content-Type: application/zip" \
             --data-binary @release.zip \
             "https://${AZURE_WEBAPP_NAME}.scm.azurewebsites.net/api/zipdeploy"
